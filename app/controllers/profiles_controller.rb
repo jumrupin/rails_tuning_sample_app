@@ -15,5 +15,6 @@ class ProfilesController < ApplicationController
 
   def user_reccomend_skill_categories
     SkillCategory.eager_load(:skills).where(reccomend: true).where(skills: {user_id: @user.id})
+    
   end
 end
