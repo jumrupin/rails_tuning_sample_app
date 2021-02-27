@@ -2,7 +2,6 @@ class ProfilesController < ApplicationController
    def index
     @user = User.find(1)
     raise Forbidden unless user_safe?
-
     @skill_categories = user_reccomend_skill_categories
     @articles = @user.articles.preload(:tags)
   end
@@ -15,6 +14,5 @@ class ProfilesController < ApplicationController
 
   def user_reccomend_skill_categories
     SkillCategory.eager_load(:skills).where(reccomend: true).where(skills: {user_id: @user.id})
-    
   end
 end
